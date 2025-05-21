@@ -1,0 +1,74 @@
+Absolutely! Here's a general rulebook 🧠 for handling string DP problems, especially when applying tabulation and space optimization.
+
+🔁 General Rule for String DP — Tabulation & Space Optimization
+🧱 1. DP Table Meaning
+For any DP problem on strings:
+
+cpp
+Copy
+Edit
+dp[i][j] = answer for first i characters of string1 and first j characters of string2
+That means:
+
+i = 0 → empty prefix of string1
+
+j = 0 → empty prefix of string2
+
+So table size should be dp[n+1][m+1] for strings of length n and m
+
+📐 2. Dimensions of the Table (Tabulation)
+What You're Storing	Table Size
+dp[i][j] where i is from s1	(s1.length() + 1) rows
+j is from s2	(s2.length() + 1) columns
+
+🧮 3. Base Cases
+Always initialize:
+
+dp[0][j] → comparing empty s1 to s2[0..j-1]
+
+dp[i][0] → comparing s1[0..i-1] to empty s2
+
+♻️ 4. Space Optimization Rule
+In space-optimized DP:
+
+Keep only 2 rows: prev[] and curr[]
+
+Size of these arrays should be based on the inner loop string
+
+✅ Rule:
+Inner loop variable	Array size for prev[] & curr[]
+j over s2	s2.length() + 1
+j over s1	s1.length() + 1
+
+✔️ Because curr[j] and prev[j] track the current and previous row/column values.
+
+✅ 5. Final Result Location
+Problem Type	Final DP Cell
+LCS / Edit Distance	dp[n][m]
+Substring Match	Often max(dp[i][j]) over the grid
+Count Ways (like subsequences)	dp[n][m]
+
+🔧 Example-Based Summary
+Problem Type	Outer Loop	Inner Loop	Array Size in Space Optimized
+Edit Distance	i over s1	j over s2	m + 1 (length of s2)
+LCS (Longest Common Subsequence)	i over s1	j over s2	m + 1
+Longest Palindromic Subsequence	i over s1	j over s1 (reverse)	n + 1
+Subset Sum / Count Subsequences	i over nums	j over sum/target	depends on inner
+
+🧠 Mnemonic
+"Size the row by the outer loop, and the array by the inner loop."
+
+In space optimization, always match array size to the variable changing in the inner loop, because that’s where the indices (curr[j], prev[j]) are accessed.
+
+| #  | Problem Type                             | DP Definition                                                             | Outer Loop         | Inner Loop         | Array Size (in space optimized) | Final Result    |
+| -- | ---------------------------------------- | ------------------------------------------------------------------------- | ------------------ | ------------------ | ------------------------------- | --------------- |
+| 1  | **Edit Distance**                        | `dp[i][j] = min ops to convert s1[0..i-1] → s2[0..j-1]`                   | `i in [1..n]` (s1) | `j in [1..m]` (s2) | `m + 1`                         | `dp[n][m]`      |
+| 2  | **LCS (Longest Common Subsequence)**     | `dp[i][j] = len of LCS for s1[0..i-1], s2[0..j-1]`                        | `i in [1..n]`      | `j in [1..m]`      | `m + 1`                         | `dp[n][m]`      |
+| 3  | **Longest Palindromic Subsequence**      | `dp[i][j] = LCS(s1, reverse(s1))`                                         | `i in [1..n]`      | `j in [1..n]`      | `n + 1`                         | `dp[n][n]`      |
+| 4  | **Longest Common Substring**             | `dp[i][j] = len of longest substring ending at i, j`                      | `i in [1..n]`      | `j in [1..m]`      | `m + 1`                         | `max(dp[i][j])` |
+| 5  | **Minimum Insertions to Palindrome**     | `dp[i][j] = min insertions for s[i..j]`                                   | `i from n-1 → 0`   | `j from i+1 → n-1` | 2D only (can’t optimize easily) | `dp[0][n-1]`    |
+| 6  | **Count Distinct Subsequences**          | `dp[i][j] = count ways s1[0..i-1] → s2[0..j-1]`                           | `i in [1..n]`      | `j in [1..m]`      | `m + 1`                         | `dp[n][m]`      |
+| 7  | **Wildcard Matching (`*` and `?`)**      | `dp[i][j] = isMatch(s1[0..i-1], s2[0..j-1])`                              | `i in [1..n]`      | `j in [1..m]`      | `m + 1`                         | `dp[n][m]`      |
+| 8  | **Regular Expression Matching**          | Similar to wildcard matching                                              | `i in [1..n]`      | `j in [1..m]`      | `m + 1`                         | `dp[n][m]`      |
+| 9  | **Shortest Common Supersequence Length** | `dp[i][j] = len of SCS for s1[0..i-1], s2[0..j-1]`                        | `i in [1..n]`      | `j in [1..m]`      | `m + 1`                         | `dp[n][m]`      |
+| 10 | **Interleaving Strings**                 | `dp[i][j] = is s3[0..i+j-1] an interleaving of s1[0..i-1] and s2[0..j-1]` | `i in [0..n]`      | `j in [0..m]`      | `m + 1`                         | `dp[n][m]`      |
