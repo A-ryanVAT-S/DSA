@@ -3,6 +3,8 @@
 //it is a directed graph algorithm that finds the strongly connected components of a directed graph.
 // A strongly connected component (SCC) of a directed graph is a maximal strongly connected subgraph.
 // A directed graph is strongly connected if there is a path from any vertex to every other vertex.
+//scc means that there is a path from any vertex to every other vertex in the component.
+
 
 //Baiscally we have to do :
 // 1. Do a DFS on the original graph to get the finishing times of each vertex.
@@ -31,7 +33,7 @@ void dfsFinish(int v, vector<bool>& visited, stack<int>& Stack, vector<vector<in
 // DFS to collect nodes in one strongly connected component
 void dfsCollect(int v, vector<bool>& visited, vector<int>& component, vector<vector<int>>& reversedGraph) {
     visited[v] = true;
-    component.push_back(v);
+    component.push_back(v);// Add the node to the current component
 
     for (int i : reversedGraph[v])
         if (!visited[i])

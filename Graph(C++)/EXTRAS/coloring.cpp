@@ -49,7 +49,7 @@ bool checkBpGraph(vector<vector<int>> &adjL)
 
 // dfs
 bool dfsbpcheck(int node, vector<vector<int>> &adjL, vector<int> &vs)
-{ // vs is initialized to -1 // vs of starting node is 0
+{ // vs is initialized to -1 // vs of starting node is 0(color 1)//next node color is 1(color 2)
     for (auto s : adjL[node])
     {
         if (vs[s] == -1)
