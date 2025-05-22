@@ -50,9 +50,13 @@ void unionNodes(int u, int v, vector<int> &parent, vector<int> &rank)
     // Union by rank as we need rank to be same
     // Attach the smaller tree under the larger tree as smaller has less nodes so less work
     if (rank[parentU] < rank[parentV])
+    {
         parent[parentU] = parentV;
+        rank[parentV]+=rank[parentU];}
+    // Attach the smaller tree under the larger tree as smaller has less nodes so less work
     else if (rank[parentU] > rank[parentV])
-        parent[parentV] = parentU;
+       { parent[parentV] = parentU;
+        rank[parentU] += rank[parentV];}
     else
     {
         parent[parentV] = parentU;

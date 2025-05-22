@@ -1,0 +1,53 @@
+Trees are basically non-linear data structures that consist of nodes connected by edges.
+They are used to represent hierarchical relationships between elements.
+Each tree has a root node, which is the topmost node in the hierarchy, and each node can have zero or more child nodes.
+The nodes without children are called leaf nodes.
+
+
+Binary trees are a specific type of tree where each node can have at most two children, referred to as the left child and the right child.
+Binary trees are widely used in computer science for various applications, including searching and sorting algorithms, expression parsing, and data representation.
+
+
+Binary trees can be classified into different types based on their properties:
+1. Full Binary Tree: A binary tree in which every node has either 0 or 2 children.
+2. Complete Binary Tree: A binary tree in which all levels are completely filled except possibly for the last level, which is filled from left to right.
+3. Perfect Binary Tree: A binary tree in which all internal nodes have two children and all leaf nodes are at the same level.
+4. Balanced Binary Tree: A binary tree in which the height of the left and right subtrees of any node differ by at most one.
+5. Degenerate (or pathological) Tree: A binary tree in which each parent node has only one child, making it essentially a linked list.
+6. Binary Search Tree (BST): A binary tree in which for each node, the left subtree contains only nodes with values less than the node's value
+                             and the right subtree contains only nodes with values greater than the node's value.
+
+7. AVL Tree: A self-balancing binary search tree where the difference in heights between the left and right subtrees of any node is at most one.
+8. Red-Black Tree: A self-balancing binary search tree where each node has an extra bit for denoting the color of the node, either red or black.
+9. Splay Tree: A self-adjusting binary search tree that performs rotations to move frequently accessed elements closer to the root.
+10. Treap: A randomized binary search tree that maintains a heap property based on priority values assigned to each node.
+11. Segment Tree: A binary tree used for storing intervals or segments, allowing efficient querying of segment-related information.
+12. Fenwick Tree (Binary Indexed Tree): A data structure that provides efficient methods for cumulative frequency tables and point updates.
+
+representation of binary trees:
+
+struct Node {
+    int data;
+    Node* left;
+    Node* right;
+
+    Node(int value) {
+        data = value;
+        left = nullptr;
+        right = nullptr;
+    }
+};
+
+int main() {
+    Node* root = new Node(1);
+    root->left = new Node(2);
+    root->right = new Node(3);
+    root->left->left = new Node(4);
+    root->left->right = new Node(5);
+    return 0;
+}// tree would look like this
+//         1
+//        / \
+//       2   3
+//      / \
+//     4   5
