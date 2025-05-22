@@ -122,3 +122,33 @@ public:
     }
 };
 
+
+
+// all 3 in one go in iterative way using stack
+class Solution
+{
+public:
+    void allTraversals(Node* root, vector<int>& inorder, vector<int>& postorder, vector<int>& preorder) {
+        if (root == nullptr) return;
+
+        stack<pair<Node*, int>> s;
+        s.push({root, 1});
+
+        while (!s.empty()) {
+            auto [current, state] = s.top();
+            s.pop();
+
+            if (state == 1) {
+                preorder.push_back(current->data);
+                s.push({current, 2});
+                if (current->left) s.push({current->left, 1});
+            } else if (state == 2) {
+                inorder.push_back(current->data);
+                s.push({current, 3});
+                if (current->right) s.push({current->right, 1});
+            } else {
+                postorder.push_back(current->data);
+            }
+        }
+    }
+};
