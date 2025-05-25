@@ -39,6 +39,9 @@ vector<int> TopoSort(int v, vector<int> adj[])
 }
 
 // topo sort for bfs(kahn algo)
+//we use indegree array to store the indegree of each node as if a->b then a will have obviously indegree less than b
+//in such a way we can order the nodes in such a way that if a->b then a will come before b
+//we use queue to store the nodes with indegree 0 and then we pop the node and push it in the ans vector
 vector<int> TopoSort(int node, int v, vector<vector<int>> adj)
 {
     vector<int> indeg(v, 0);
