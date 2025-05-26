@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+
 // ✅ Constructors
 string s;                         // Default: creates an empty string
 string s2("hello");                // Creates string from a C-style string

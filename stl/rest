@@ -1,0 +1,3 @@
+//To access map last element:
+auto lastElement = map.rbegin();
+// auto lastElement = map.end()-1; // Alternative way to get the last element

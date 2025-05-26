@@ -58,6 +58,16 @@ vector<vector<int>> levelOrder(Node* root) {
     return result;
 }
 
+//all 3 in one go
+void trans(Node* root, vector<int>& inorder, vector<int>& postorder, vector<int>& preorder ){
+    if(root == nullptr)
+        return;
+    preorder.push_back(root->data);
+    trans(root->left, inorder, postorder, preorder);
+    inorder.push_back(root->data);
+    trans(root->right, inorder, postorder, preorder);
+    postorder.push_back(root->data);
+}
 
 int main() {
     // Create a simple binary tree

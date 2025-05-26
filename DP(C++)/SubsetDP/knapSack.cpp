@@ -27,6 +27,7 @@ using namespace std;
 int knapsack(int n, int w, vector<int> &val, vector<int> &wt)
 {
     vector<vector<int>> dp(n + 1, vector<int>(w + 1, 0));
+    //base case is not needed as we are initializing the dp array with 0
     for (int i = 1; i <= n; i++)
     {
         for (int j = 1; j <= w; j++)
