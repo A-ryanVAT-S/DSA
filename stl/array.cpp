@@ -26,13 +26,20 @@ int n = arr2.size(); // Size of the vector
 sort(arr2.begin(), arr2.end()); // Sorts by first element (start), then second (end)
 sort(arr2.begin(), arr2.end(), [](auto &a, auto &b){ return a.second < b.second; }); // Sorts by second element (end)
 
-
 // taking input for pair of vectors
 for(auto &p : arr2) {
     cin >> p.first >> p.second;
 }
+//taking input with two arrays
+vector<pair<int, int>> arr3;
+for(int i=0;i<n;i++){
+    arr3[i]={arrx[i],arru[i]}; // Assuming arrx and arru are defined
+}
+
+
 
 // Printing the vector of pairs
 for(const auto &p : arr2) {
     cout << p.first << " " << p.second << '\n';
 }
+
