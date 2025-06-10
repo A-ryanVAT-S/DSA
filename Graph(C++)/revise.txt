@@ -1,0 +1,36 @@
+1.Graph can be adjL and adjM, u should be able to change
+2.Graph can be directed or undirected, can take entry of both as adjL
+3.Graph can be weighted or unweighted, can take entry of both as adjL
+
+4.We got too traversal techniques, DFS and BFS
+5.DFS can be implemented using stack or recursion
+    a.in Recursion it is easy just call dfs for all adjacent nodes
+    b.In stack, we can use a stack and push all adjacent nodes, then pop and visit the node, then push all adjacent nodes of popped node
+       but we have to maintain a visited array to avoid visiting same node again
+
+6.BFS can be implemented using queue
+7.For disconnected graph, we can run DFS or BFS from every unvisited node using a loop for all nodes if not visited
+
+Types of problems:
+1.Traversal-> can be done using DFS or BFS
+2.Bipartite check: For dfs or bfs just we have to check color of parent should be different from child can maintain a color array or in dfs simple parameter for parent
+3.Cycle Detection:
+    a.undirected graph: I.DFS: simply use a parameter of parent , if the adjacnet node is not parent and visited then cycle is present
+                        II.BFS: use a parent array, if the adjacent node is not parent and visited then cycle is present or can maintain a queue of pair (child parent )
+                                 and check if the adjacent node is not parent and visited then cycle is present
+    b.directed graph: I.DFS: use a pathvisited array along with visited array, and use backtracking, if we reach a node which is already in pathvisited then cycle is present
+                      II.BFS: It is a algo also called as Kahn's algo, we can maintain a indegree array and use a queue, if the queue is empty and we have not visited all nodes then cycle is present
+    
+    ->Topological Sort: Done in directed acyclic graph, such as if there is edge u  ->v then u should come before v in the topological sort(thatswhy we need DAG)
+                        USING DFS: we use stack as a parameter , we push the node after doing dfs for all adjacent nodes (just before return statement at last ),
+                                  then we can pop the stack to get the topological sort(in a separate function using pushback in array , and that array would be ans.)
+                        USING BFS: Kahn's algo, we can maintain a indegree array(calculate in a loop first) and use a queue(firstly run a loop and put all 0 indegree in that queue), we can pop the node from queue and push it in ans array,
+                                  then we can reduce the indegree of all adjacent nodes and if indegree becomes 0 then push it in queue, at last if we have visited all nodes then ans is topological sort
+
+4.Shortest Path:
+ a.in WDAG: 1.do TopoSort(do using DFS or BFS)(DFS shorter)
+            2.using topo sort we can relax all edges in the order of topological sort, we can maintain a distance array(starting node = 0 rest all infinity) and update it if we find a shorter path
+            3.i.e for every node which is in topostack, pop it and for all neighbours if distance[neighbour] > distance[node](distance from source) + weight then update distance[neighbour] = distance[node] + weight
+
+ b.in Unweighted graph: 1.BFS can be used to find shortest path, we can maintain a distance array(starting node = 0 rest all infinity) and update it if we find a shorter path, 
+                        i.e. if distance[neighbour] > distance[node] + 1 then update distance[neighbour] = distance[node] + 1

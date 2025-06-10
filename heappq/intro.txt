@@ -1,0 +1,57 @@
+Heaps are datastructures that can be used to implement priority queues. They are binary trees that satisfy the heap property,
+which states that for a max-heap, every parent node is greater than or equal to its child nodes, and for a min-heap, every parent node is less than or equal to its child nodes.
+
+we implement heaps using arrays, where the parent node at index i has its left child at index 2*i + 1 and its right child at index 2*i + 2.
+or we can start indexing from 1, where the parent node at index i has its left child at index 2*i and its right child at index 2*i + 1.
+(like we implemented segment trees)
+
+
+Priority queues are often implemented using heaps because they allow for efficient insertion and removal of the highest (or lowest) priority element.
+Heaps can be used to implement priority queues, which are abstract data types that allow for efficient retrieval of the highest (or lowest) priority element.
+Heaps are often used in algorithms like heapsort, Dijkstra's algorithm, and Prim's algorithm, where we need to repeatedly access the minimum or maximum element.
+
+priority_queue<int> pq; // max-heap
+pq.push(10); // insert 10
+pq.pop(); // remove the top element (maximum)
+pq.top(); // get the top element (maximum)
+pq.empty(); // check if the queue is empty
+pq.size(); // get the size of the queue
+
+
+priority_queue<int, vector<int>, greater<int>> min_pq; // min-heap
+
+all stl of  heaps
+priority_queue<int> max_heap; // max-heap
+priority_queue<int, vector<int>, greater<int>> min_heap; // min-heap
+make_heap(begin(arr), end(arr)); // create a max-heap from an array
+pq.push(10); // insert 10 into the max-heap
+pq.pop(); // remove the top element (maximum) from the max-heap
+
+Why heap sort is O(n log n) even though building a heap is O(n):
+Building the heap (max-heap): takes O(n) time (done once).
+
+Extracting max n times: each pop takes O(log n), and we do it n times → O(n log n).
+
+So, total time =
+O(n) (heap build) + O(n log n) (sorting phase) = O(n log n) overall.
+
+
+priority_queue<int, vector<int>, greater<int>> pq(arr.begin(), arr.end());// Create a min-heap from an array using the STL
+
+//to make a max heap from an array
+priority_queue<int> pq(arr.begin(), arr.end()); // Create a max-heap from an array using the STL
+
+//to make a min heap from an array
+priority_queue<int, vector<int>, greater<int>> min_pq(arr.begin(), arr.end()); // Create a min-heap from an array using the STL
+
+generally for kth smallest elements we use max heap and for kth largest elements we use min heap in problems
+
+for different stl as priority_queue values we need to define a custom comparator
+
+like struct cmp {
+    bool operator()(pair<int,int>& a, pair<int,int>& b) {
+        return a.second > b.second; // min-heap based on frequency
+    }
+};
+
+when i use this custom comparator in priority_queue, it will create a min-heap based on the second element of the pair.

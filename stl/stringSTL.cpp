@@ -1,6 +1,12 @@
 // #include <bits/stdc++.h>
 // using namespace std;
 
+// for converting char to string
+// char s = 'X';
+// string ch(1, s);  // ch = "X"
+// cout << ch;       // Output: X
+
+
 // //
 // isdigit(char c) // Checks if character `c` is a digit (0-9)//bool
 // isalpha(char c) // Checks if character `c` is an alphabetic letter (a-z, A-Z)//bool

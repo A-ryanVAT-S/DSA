@@ -34,12 +34,13 @@ public:
 
             for (int neighbor : adj[node])
             {
-                if (!visited[neighbor])
-                {
-                    visited[neighbor] = true;
-                    distance[neighbor] = distance[node] + 1;
-                    q.push(neighbor);
+                for (int neighbor : adj[node]) {
+                    if (distance[neighbor] > distance[node] + 1) {
+                        distance[neighbor] = distance[node] + 1;
+                        q.push(neighbor);
+                    }
                 }
+
             }
         }
 
