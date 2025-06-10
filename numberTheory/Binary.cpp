@@ -17,5 +17,15 @@ int toDecimal(vector<int> Binary) {
     for (int i = 0; i < n; ++i) {
         ans += Binary[i] * pow(2, n - 1 - i);
     }
-    return ans;
+    return ans;}
+    
+//for 10^9 no of bits required is  30
+//for 10^18 no of bits required is 60
+int BitLength(int n) {
+    int length = 0;
+    while (n > 0) {
+        n >>= 1;
+        length++;
+    }
+    return length;
 }

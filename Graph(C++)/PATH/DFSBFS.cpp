@@ -8,6 +8,8 @@ int main()
 {
 
     // BFS
+    //TC= O(V)+ O(2E)= O(V+E)
+    //SC= O(V)+ O(V)= O(V)
     vector<int> ans;
     queue<int> pool;
     int V = 10; // no of nodes
